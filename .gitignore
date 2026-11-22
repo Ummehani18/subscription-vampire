@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+.env.*
+.DS_Store
+*.log
+coverage
+# IMPORTANT: never ignore .kiro (required for Kiroween submission)
