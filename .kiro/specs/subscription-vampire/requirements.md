@@ -113,7 +113,7 @@ Acceptance criteria:
 1. The system SHALL perform all parsing and analysis in the browser with no network request containing statement data.
 2. The system SHALL display a privacy badge on the main screen at all times.
 3. WHEN the user clicks "Clear all data" THEN the system SHALL reset the app state to its initial value, revoke any export object URLs, and return to the upload screen.
-4. The app SHALL self-host its fonts (`@fontsource/cinzel`, `@fontsource-variable/inter`) and SHALL ship a Content Security Policy with `connect-src 'self'`.
+4. The app SHALL self-host its fonts (`@fontsource/cinzel`, `@fontsource-variable/inter`, and `@fontsource/creepster` as the display font for the hero title only) and SHALL ship a Content Security Policy with `connect-src 'self'`.
 
 ## Requirement 10: Theme and accessibility
 **User story:** As a user, I want the app to feel unforgettable but still be easy to use.
