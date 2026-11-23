@@ -23,7 +23,7 @@ const TRAILING_MARKER = /(dr|cr)\.?\s*$/i;
 
 type AmountSource =
   | { kind: 'split'; debit: number; credit: number } // -1 when that column is absent
-  | { kind: 'single'; amount: number; indicator: number };
+  | { kind: 'single'; amount: number; indicator: number; flip?: boolean };
 
 interface Columns {
   date: number;
@@ -97,7 +97,9 @@ function readAmount(
   const marker = TRAILING_MARKER.exec(raw)?.[1]?.toLowerCase();
   if (marker === 'dr') return { amount, direction: 'debit' };
   if (marker === 'cr') return { amount, direction: 'credit' };
-  return { amount, direction: signed < 0 ? 'debit' : 'credit' };
+  const isNegative = signed < 0;
+  const isDebit = source.flip ? !isNegative : isNegative;
+  return { amount, direction: isDebit ? 'debit' : 'credit' };
 }
 
 function parseRow(row: string[], columns: Columns): Transaction | null {
@@ -157,6 +159,64 @@ export function parseStatement(text: string): ParseResult {
   const transactions: Transaction[] = [];
   let skippedRows = 0;
   for (const row of dataRows) {
+    const transaction = parseRow(row, columns);
+    if (transaction) transactions.push(transaction);
+    else skippedRows += 1;
+  }
+  return { transactions, skippedRows, needsMapping: false };
+}
+
+/** Zero-based column indexes chosen by the user in the column mapper. */
+export interface ColumnMapping {
+  date: number;
+  narration: number;
+  /** A single amount column, read as signed: negative = debit, positive = credit. */
+  amount: number;
+  /** When true the sign is reversed: positive = debit, negative = credit. */
+  flipSign: boolean;
+}
+
+function isValidIndex(index: number, width: number): boolean {
+  return Number.isInteger(index) && index >= 0 && index < width;
+}
+
+/**
+ * Parses rows using columns the user picked manually (the `needsMapping` path).
+ * `rawRows` and `headers` are the values returned by `parseStatement`; `rawRows`
+ * excludes the header row.
+ *
+ * The amount column is read as a signed amount (negative = debit). With
+ * `flipSign` the sign is reversed, which is also how a debit-only column
+ * (all positive) is mapped. A trailing `Dr`/`Cr` in the cell is an explicit
+ * direction and wins over the sign, so `flipSign` does not affect it.
+ *
+ * Unreadable rows are skipped and counted; blank rows are ignored. If the
+ * mapping is invalid (index out of range, not an integer, or one column used
+ * for two roles) nothing is parsed and `needsMapping: true` is returned again
+ * with the same `headers` and `rawRows`. Never throws.
+ */
+export function applyMapping(
+  rawRows: string[][],
+  headers: string[],
+  mapping: ColumnMapping,
+): ParseResult {
+  const { date, narration, amount, flipSign } = mapping;
+  const indexes = [date, narration, amount];
+  const valid =
+    indexes.every((i) => isValidIndex(i, headers.length)) && new Set(indexes).size === indexes.length;
+  if (!valid) {
+    return { transactions: [], skippedRows: 0, needsMapping: true, headers, rawRows };
+  }
+
+  const columns: Columns = {
+    date,
+    narration,
+    amount: { kind: 'single', amount, indicator: -1, flip: flipSign },
+  };
+  const transactions: Transaction[] = [];
+  let skippedRows = 0;
+  for (const row of rawRows) {
+    if (row.every((c) => c.trim() === '')) continue;
     const transaction = parseRow(row, columns);
     if (transaction) transactions.push(transaction);
     else skippedRows += 1;
