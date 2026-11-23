@@ -2,9 +2,9 @@
 
 Work top to bottom. Mark each logic task done only when its tests pass. Mark each UI task (7-9) done only when every item of its manual checklist is ticked. Day plan in brackets.
 
-- [ ] 1. Project scaffold [Day 1-2]
+- [x] 1. Project scaffold [Day 1-2]
   - [x] 1.1 Vite + React + TS (strict) + Tailwind v4 + Vitest + fast-check configured; `npm run test` and `npm run build` pass
-  - [ ] 1.2 Folder structure matches `structure.md`; theme tokens in place; fonts self-hosted via `@fontsource/cinzel` and `@fontsource-variable/inter`; CSP with `connect-src 'self'` set; deploy a "hello vampire" page to Vercel/Netlify
+  - [x] 1.2 Folder structure matches `structure.md`; theme tokens in place; fonts self-hosted via `@fontsource/cinzel` and `@fontsource-variable/inter`; CSP with `connect-src 'self'` set; deploy a "hello vampire" page to Vercel/Netlify
     - Checklist: no request to fonts.googleapis.com or other third-party hosts in the browser network tab; CSP header or meta tag present
   - _Requirements: 9, 10_
 
@@ -86,15 +86,15 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
     - [x] 360px layout and reduced motion still hold
   - _Requirements: 7, 8, 9, 10_
 
-- [ ] 10. Polish and ship [Day 8]
+- [x] 10. Polish and ship [Day 8]
   - [x] 10.1 Final accessibility audit (verification only; fixes belong in tasks 7-9): keyboard, contrast, 360px, reduced motion
-  - [ ] 10.2 README, final deploy, license visible in repo About
-  - [ ] Manual checklist (all must pass):
+  - [x] 10.2 README, final deploy, license visible in repo About
+  - [x] Manual checklist (all must pass):
     - [x] Keyboard only: upload, sample data, mapper, every card button, both collapsed sections, "How to cancel", Export and Clear all data all work; focus ring always visible
     - [x] Contrast: on-screen text meets WCAG AA on every screen
     - [x] 360px: no horizontal scroll on upload, mapper and dashboard, including open cancel guides
     - [x] Reduced motion: no Blood Meter fill or candle flicker animation
-    - [ ] README is accurate and includes the live URL
-    - [ ] Deployed site loads, "Try with sample data" works, and the network tab shows no third-party requests
-    - [ ] Repo is public, includes `.kiro/`, and GitHub shows the MIT license in the About sidebar
+    - [x] README is accurate and includes the live URL
+    - [x] Deployed site loads, "Try with sample data" works, and the network tab shows no third-party requests
+    - [x] Repo is public, includes `.kiro/`, and GitHub shows the MIT license in the About sidebar
   - _Requirements: 10_
