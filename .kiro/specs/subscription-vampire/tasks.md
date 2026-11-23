@@ -37,9 +37,9 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - [x] 5.4 Verify sample CSV result matches `data/README.md` (seven Subscriptions, rent under Other recurring, nothing possibly cancelled)
   - _Requirements: 4_
 
-- [ ] 6. Savings math [Day 4]
-  - [ ] 6.1 Implement `savings.ts` (eligibility, totals, duplicates)
-  - [ ] 6.2 Property test P11
+- [x] 6. Savings math [Day 4]
+  - [x] 6.1 Implement `savings.ts` (eligibility, totals, duplicates)
+  - [x] 6.2 Property test P11
   - _Requirements: 5, 6_
 
 - [ ] 7. UI shell and theme [Day 5]
