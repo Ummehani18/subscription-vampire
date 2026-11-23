@@ -17,7 +17,7 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - _Requirements: 2_
 
 - [ ] 3. Statement parsing [Day 2]
-  - [ ] 3.1 Implement `parseStatement.ts` (preamble, header, column detection, debit/credit/Dr-Cr handling, signed amount where negative = debit)
+  - [x] 3.1 Implement `parseStatement.ts` (preamble, header, column detection, debit/credit/Dr-Cr handling, signed amount where negative = debit)
   - [ ] 3.2 Create synthetic fixtures `tests/fixtures/sbi-style.csv` and `tests/fixtures/icici-style.csv` (no real data)
   - [ ] 3.3 Tests with three bank-style layouts (HDFC via `data/sample-statement.csv`, `tests/fixtures/sbi-style.csv`, `tests/fixtures/icici-style.csv`)
   - [ ] 3.4 Implement `applyMapping` for the manual path, including `flipSign`
