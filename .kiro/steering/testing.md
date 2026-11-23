@@ -9,4 +9,4 @@ fileMatchPattern: "**/*.test.ts"
 - A property test must state the invariant in its name, e.g. `normalizeMerchant is idempotent`.
 - Write at least 3 example-based tests using realistic Indian narrations per parser.
 - When a property test fails, keep the shrunk counterexample as a permanent example-based regression test.
-- Never use real bank data in tests. Use the synthetic generators or `data/sample-statement.csv`.
+- Never use real bank data in tests. Use the synthetic generators, `data/sample-statement.csv`, or the synthetic fixtures in `tests/fixtures/` (`sbi-style.csv`, `icici-style.csv`).

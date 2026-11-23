@@ -20,14 +20,14 @@ Goal for the Costume Contest category: a haunting UI that is also clear and acce
 All text must meet WCAG AA contrast against its background.
 
 ## Typography
-- Headings: "Cinzel" (Google Fonts), fallback serif
-- Body and numbers: "Inter", fallback system-ui; use tabular-nums for amounts
+- Headings: "Cinzel", self-hosted via `@fontsource/cinzel` (never Google Fonts or any CDN), fallback serif
+- Body and numbers: "Inter", self-hosted via `@fontsource-variable/inter`, fallback system-ui; use tabular-nums for amounts
 
 ## Signature elements
 - **Blood Meter**: a vertical or circular gauge that fills with the total yearly drain. Animated fill on load.
 - Each vampire shown as a card with a fang/bat icon (inline SVG, no external images) and a "Stake it" button; staked cards get a garlic-green strike effect and the Blood Meter drops.
 - Subtle fog gradient background; flickering candle glow on the primary button.
-- Microcopy with personality: "3 vampires are feeding on you", "Staked. You saved Rs 4,788 a year".
+- Microcopy with personality: "3 vampires are feeding on you", "Staked. You saved ₹4,788 a year".
 
 ## Rules
 - Respect `prefers-reduced-motion`: disable flicker and fill animations.
