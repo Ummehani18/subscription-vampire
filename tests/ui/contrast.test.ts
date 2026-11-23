@@ -33,6 +33,10 @@ const TEXT_PAIRS: Array<[string, string]> = [
   ['blood-bright', 'surface'],
   ['gold', 'surface'], // skipped-rows notice
   ['garlic', 'surface'], // privacy badge
+  // Task 8 dashboard: badges sit on bg, card text on surface.
+  ['gold', 'bg'], // price hike, possible duplicate
+  ['garlic', 'bg'], // price drop, staked
+  ['blood-bright', 'surface-2'],
 ];
 
 describe('theme text contrast (WCAG AA, 4.5:1 for normal text)', () => {

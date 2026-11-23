@@ -47,6 +47,16 @@ body {
   60% { box-shadow: 0 0 9px 1px rgb(255 77 94 / 0.3); }
 }
 
+/* Blood Meter: fills from empty on load and glides on change. Stopped by the reduced-motion rule below. */
+@keyframes meter-fill {
+  from { stroke-dashoffset: var(--meter-empty); }
+}
+
+.blood-meter-fill {
+  animation: meter-fill 1.2s ease-out;
+  transition: stroke-dashoffset 0.6s ease-out;
+}
+
 .candle-glow {
   box-shadow: 0 0 12px 2px rgb(255 77 94 / 0.35);
   animation: candle-flicker 2.4s ease-in-out infinite;

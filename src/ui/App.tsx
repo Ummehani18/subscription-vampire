@@ -1,10 +1,13 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { applyMapping, parseStatement, type ColumnMapping } from '../core/parseStatement';
 import sampleStatement from '../../data/sample-statement.csv?raw';
 import { appReducer, initialState } from './appState';
+import ClearDataButton from './components/ClearDataButton';
 import ColumnMapper from './components/ColumnMapper';
+import Dashboard from './components/Dashboard';
+import { browserDownloadDeps, downloadText, revokeAll, todayIso } from './download';
+import { STAKE_LIST_FILENAME, STAKE_LIST_MIME, buildStakeListMarkdown, hasStaked } from './stakeList';
 import PrivacyBadge from './components/PrivacyBadge';
-import SkippedRowsNotice from './components/SkippedRowsNotice';
 import UploadZone from './components/UploadZone';
 import { readStatementFile } from './fileIntake';
 
@@ -18,6 +21,28 @@ function BatIcon() {
 
 export default function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  /** Object URLs created by Export, revoked by "Clear all data" (Req 9.3) or when the app unmounts. */
+  const exportUrls = useRef<string[]>([]);
+
+  useEffect(
+    () => () => {
+      revokeAll(exportUrls.current, (url) => URL.revokeObjectURL(url));
+      exportUrls.current = [];
+    },
+    [],
+  );
+
+  const handleExport = () => {
+    if (!hasStaked(state.vampires, state.decisions)) return;
+    const markdown = buildStakeListMarkdown(state.vampires, state.decisions, state.counted, todayIso());
+    exportUrls.current.push(downloadText(markdown, STAKE_LIST_FILENAME, STAKE_LIST_MIME, browserDownloadDeps));
+  };
+
+  const handleClear = () => {
+    revokeAll(exportUrls.current, (url) => URL.revokeObjectURL(url));
+    exportUrls.current = [];
+    dispatch({ type: 'reset' });
+  };
 
   const handleFile = async (file: File) => {
     dispatch({ type: 'readStarted' });
@@ -64,18 +89,19 @@ export default function App() {
         )}
 
         {state.stage === 'dashboard' && (
-          // Placeholder until Task 8 (Dashboard) renders the Blood Meter and vampire list.
-          <section aria-labelledby="dashboard-heading" className="flex flex-col gap-4">
-            <h2 id="dashboard-heading" className="font-heading text-2xl text-bone">
-              Statement read
-            </h2>
-            <SkippedRowsNotice count={state.skippedRows} />
-            <p className="text-bone">
-              {state.transactions.length} {state.transactions.length === 1 ? 'transaction' : 'transactions'} read,{' '}
-              {state.vampires.length} recurring {state.vampires.length === 1 ? 'charge' : 'charges'} found.
-            </p>
-          </section>
+          <Dashboard
+            vampires={state.vampires}
+            decisions={state.decisions}
+            counted={state.counted}
+            skippedRows={state.skippedRows}
+            onDecide={(key, decision) => dispatch({ type: 'decide', key, decision })}
+            onCount={(key) => dispatch({ type: 'count', key })}
+            onUndo={(key) => dispatch({ type: 'undo', key })}
+            onExport={handleExport}
+          />
         )}
+
+        {state.stage !== 'upload' && <ClearDataButton onClear={handleClear} />}
       </main>
     </div>
   );

@@ -56,35 +56,45 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
     - [x] Mapper "Flip sign" changes which rows are debits
   - _Requirements: 1, 2, 9, 10_
 
-- [ ] 8. Dashboard [Day 6]
-  - [ ] 8.1 BloodMeter (text alternative for screen readers, animation off under reduced motion)
-  - [ ] 8.2 VampireList and VampireCard: Subscriptions first, collapsed "Other recurring payments", collapsed "Dismissed"; price-hike, price-drop, duplicate and "Possibly cancelled" badges
-  - [ ] 8.3 Keep / Stake / Dismiss / Count it / Undo and SavingsBanner
-  - [ ] 8.4 EmptyState ("No vampires found")
-  - [ ] Manual checklist (all must pass):
-    - Sample data shows seven Subscriptions and rent under the collapsed "Other recurring payments"
-    - Rent is not in the Blood Meter until "Count it" is clicked, and Undo removes it again
-    - Stake, Keep and Dismiss each update Blood Meter, "Saved per year" and the to-review count as specified
-    - Spotify shows ₹139 and a "price hike" badge; YouTube Premium and Spotify show the duplicate flag
-    - Cancel guide is hidden behind a "How to cancel" toggle on unstaked cards and auto-expanded once a card is staked
-    - Badges carry text, not colour alone
-    - All buttons reachable and operable by keyboard; Blood Meter has a text alternative
-    - 360px layout is usable; reduced motion disables the fill and flicker animations
-    - A file with no detectable vampires shows "No vampires found"
+- [x] 8. Dashboard [Day 6]
+  - [x] 8.1 BloodMeter (text alternative for screen readers, animation off under reduced motion)
+  - [x] 8.2 VampireList and VampireCard: Subscriptions first, collapsed "Other recurring payments", collapsed "Dismissed"; price-hike, price-drop, duplicate and "Possibly cancelled" badges
+  - [x] 8.3 Keep / Stake / Dismiss / Count it / Undo and SavingsBanner
+  - [x] 8.4 EmptyState ("No vampires found")
+  - [x] Manual checklist (all must pass):
+    - [x] Sample data shows seven Subscriptions and rent under the collapsed "Other recurring payments"
+    - [x] Rent is not in the Blood Meter until "Count it" is clicked, and Undo removes it again
+    - [x] Stake, Keep and Dismiss each update Blood Meter, "Saved per year" and the to-review count as specified
+    - [x] Spotify shows ₹139 and a "price hike" badge; YouTube Premium and Spotify show the duplicate flag
+    - Deferred to Task 9 (not required for Task 8): cancel guide is hidden behind a "How to cancel" toggle on unstaked cards and auto-expanded once a card is staked
+    - [x] Badges carry text, not colour alone
+    - [x] All buttons reachable and operable by keyboard; Blood Meter has a text alternative
+    - [x] 360px layout is usable; reduced motion disables the fill and flicker animations
+    - [x] A file with no detectable vampires shows "No vampires found"
   - _Requirements: 5, 6, 10_
 
-- [ ] 9. Cancel guides and export [Day 7]
-  - [ ] 9.1 `cancelGuides.ts` with verified steps, generic fallback, and the "Verify in your app, steps may have changed" note
-  - [ ] 9.2 Export Stake List as Markdown `.md` (disabled when nothing is staked), Clear all data (reset state, revoke object URLs)
-  - [ ] Manual checklist (all must pass):
-    - A known merchant shows its steps and "last verified" date; an unknown merchant shows the generic steps
-    - "How to cancel" toggle works by keyboard and exposes its expanded state; staked cards show the guide already expanded
-    - Export is disabled with no staked vampires; with some staked, the downloaded `.md` file lists them, amounts (₹), annual savings and steps
-    - "Clear all data" returns to the upload screen with initial state, and a refresh shows no data; export object URLs are revoked (check `URL.revokeObjectURL` is called)
-    - 360px layout and reduced motion still hold
+- [x] 9. Cancel guides and export [Day 7]
+  - [x] 9.1 `cancelGuides.ts` with verified steps, generic fallback, and the "Verify in your app, steps may have changed" note
+  - [x] 9.2 Export Stake List as Markdown `.md` (disabled when nothing is staked), Clear all data (reset state, revoke object URLs)
+  - [x] Manual checklist (all must pass):
+    - [x] A known merchant shows its steps and "last verified" date; an unknown merchant shows the generic steps
+    - [x] Cancel guide is hidden behind a "How to cancel" toggle on unstaked cards and auto-expanded once a card is staked (deferred from Task 8)
+    - [x] "How to cancel" toggle works by keyboard and exposes its expanded state; staked cards show the guide already expanded
+    - [x] Export is disabled with no staked vampires; with some staked, the downloaded `.md` file lists them, amounts (₹), annual savings and steps
+    - [x] Export also downloads in the production build (`npm run build` then `npm run preview`), where the Content Security Policy is active
+    - [x] "Clear all data" returns to the upload screen with initial state, and a refresh shows no data; export object URLs are revoked (check `URL.revokeObjectURL` is called)
+    - [x] 360px layout and reduced motion still hold
   - _Requirements: 7, 8, 9, 10_
 
 - [ ] 10. Polish and ship [Day 8]
   - [ ] 10.1 Final accessibility audit (verification only; fixes belong in tasks 7-9): keyboard, contrast, 360px, reduced motion
   - [ ] 10.2 README, final deploy, license visible in repo About
+  - [ ] Manual checklist (all must pass):
+    - [ ] Keyboard only: upload, sample data, mapper, every card button, both collapsed sections, "How to cancel", Export and Clear all data all work; focus ring always visible
+    - [ ] Contrast: on-screen text meets WCAG AA on every screen
+    - [ ] 360px: no horizontal scroll on upload, mapper and dashboard, including open cancel guides
+    - [ ] Reduced motion: no Blood Meter fill or candle flicker animation
+    - [ ] README is accurate and includes the live URL
+    - [ ] Deployed site loads, "Try with sample data" works, and the network tab shows no third-party requests
+    - [ ] Repo is public, includes `.kiro/`, and GitHub shows the MIT license in the About sidebar
   - _Requirements: 10_
