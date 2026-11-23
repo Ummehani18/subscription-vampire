@@ -131,9 +131,55 @@ describe('normalizeMerchant: reference numbers and short tokens', () => {
     expect(key('CORNER STORE 2026-05-05')).toBe('CORNER STORE');
   });
 
+  it('strips full month names and any spacing in month-name dates', () => {
+    expect(key('CORNER STORE 5 SEPT 2026')).toBe('CORNER STORE');
+    expect(key('CORNER STORE 05 DECEMBER 2026')).toBe('CORNER STORE');
+    expect(key('CORNER STORE 05  MAY  26')).toBe('CORNER STORE');
+  });
+
+  it('does not read a merchant word that starts with a month abbreviation as a date (P4 counterexample)', () => {
+    expect(key('12 DECATHLON05')).toBe('12 DECATHLON05');
+    expect(key('UPI-DECATHLON-175006691@ybl')).toBe('DECATHLON');
+    expect(key('5 MAYUR 26 SWEETS')).toBe('5 MAYUR');
+    expect(key('3 MARKET 2026')).toBe('3 MARKET');
+  });
+
   it('strips IFSC codes', () => {
     expect(key('ACH/DEMO LENDER/ICIC0000001/55')).toBe('DEMO LENDER');
     expect(key('NEFT-SBIN0000000-DEMO PAYEE')).toBe('DEMO PAYEE');
+    expect(key('NEFT-HDFC0CAGSBK-DEMO PAYEE')).toBe('DEMO PAYEE');
+  });
+
+  it('keeps a 4-letter merchant glued to a reference that starts with 0 (P5 counterexample)', () => {
+    expect(key('AAAA0000000')).toBe('AAAA');
+    expect(key('AAAA000000')).toBe('AAAA');
+    expect(key('UPI-ABCD0123456')).toBe('ABCD');
+  });
+});
+
+describe('normalizeMerchant: short tokens survive next to stripped references (Task 4.2)', () => {
+  it('keeps 365 in an unknown merchant, where no alias can hide a stripping mistake', () => {
+    expect(key('UPI-FITNESS 365-4455667788')).toBe('FITNESS 365');
+    expect(key('NACH-365 DAYS GYM-9876543')).toBe('365 DAYS');
+  });
+
+  it('keeps ZEE5, 365 and 1MG when a 6+ digit reference and a UPI handle are in the same narration', () => {
+    expect(normalizeMerchant('UPI/412823854458/ZEE5/9876@oksbi/YES BANK')).toMatchObject({
+      key: 'ZEE5',
+      known: true,
+    });
+    expect(key('UPI/412823854458/FITNESS 365/9876@oksbi/YES BANK')).toBe('FITNESS 365');
+    expect(key('UPI/412823854458/TATA 1MG/9876@oksbi/YES BANK')).toBe('TATA 1MG');
+  });
+
+  it('strips a 6-digit run glued to a short token but keeps the short token', () => {
+    expect(key('UPI-TATA 1MG123456')).toBe('TATA 1MG');
+    expect(key('UPI-FITNESS 365 123456')).toBe('FITNESS 365');
+  });
+
+  it('JioHotstar and Jio stay in different categories', () => {
+    expect(normalizeMerchant('DEBIT-ACH D- JIOHOTSTAR-412301256748').category).toBe('ott-video');
+    expect(normalizeMerchant('BIL/INFT/412826263/JIO PREPAID RECHARGE').category).toBe('telecom');
   });
 });
 
@@ -238,6 +284,12 @@ describe('normalizeMerchant: alias matching rules', () => {
     expect(normalizeMerchant('NETFLIXISH CAFE').known).toBe(false);
   });
 
+  it('anchors start-anchored aliases to the first meaningful segment, after references and markers', () => {
+    expect(key('12/CR/LINKEDIN+UPI-')).toBe('LINKEDIN');
+    expect(key('UPI/412823854458/NOTION LABS/x@ybl')).toBe('NOTION');
+    expect(normalizeMerchant('UPI/SHOP/NOTION LABS').known).toBe(false);
+  });
+
   it('anchors common single words to the start of the narration', () => {
     expect(key('NOTION LABS INC')).toBe('NOTION');
     expect(key('UPI-CANVA PTY-12')).toBe('CANVA');
@@ -310,6 +362,10 @@ describe('normalizeMerchant: idempotence on the key', () => {
     // Found while fuzzing: a prefix behind leading punctuation, and a key made of short numbers.
     '+ACH D',
     '3 05/05/26 0 05/05/26 A',
+    // P4 counterexamples: a start-anchored alias behind a meaningless segment, and a
+    // month-like merchant word whose match changed when whitespace was collapsed.
+    '12/CR/LINKEDIN+UPI-',
+    '12  DECATHLON05-05-2026',
   ];
 
   it.each(samples)('normalising the key of %j returns the same key', (narration) => {

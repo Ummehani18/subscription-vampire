@@ -24,10 +24,10 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - [x] 3.5 Implement `validateFile` (not CSV, empty, over 10 MB) with example tests
   - _Requirements: 1, 2_
 
-- [ ] 4. Merchant normalisation [Day 3]
+- [x] 4. Merchant normalisation [Day 3]
   - [x] 4.1 Implement `normalizeMerchant.ts` and `merchantAliases.ts` (uppercase key, separate display, specific-first alias order, categories incl. Spotify and YouTube Premium = music)
-  - [ ] 4.2 Example tests: JioHotstar before Jio, Amazon Pay is not Amazon Prime, each alias matches its own uppercased canonical name, digit runs of 6+ stripped while `ZEE5`, `365`, `1MG` and whole UPI handles like `9876@oksbi` are handled as specified
-  - [ ] 4.3 Property tests P4, P5
+  - [x] 4.2 Example tests: JioHotstar before Jio, Amazon Pay is not Amazon Prime, each alias matches its own uppercased canonical name, digit runs of 6+ stripped while `ZEE5`, `365`, `1MG` and whole UPI handles like `9876@oksbi` are handled as specified
+  - [x] 4.3 Property tests P4, P5
   - _Requirements: 3_
 
 - [ ] 5. Recurring detection [Day 3-4]
