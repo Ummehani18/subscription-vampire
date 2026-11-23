@@ -223,3 +223,23 @@ export function applyMapping(
   }
   return { transactions, skippedRows, needsMapping: false };
 }
+
+/** Largest accepted file: 10 MB (10 * 1024 * 1024 bytes). */
+export const MAX_FILE_BYTES = 10 * 1024 * 1024;
+
+export type FileValidationError = 'not-csv' | 'empty' | 'too-large';
+
+/**
+ * Checks a file before parsing. Returns the first problem found, or null if the
+ * file may be parsed. Checks run in this order so a huge file's text is never
+ * inspected: name must end in `.csv` (case-insensitive), size must not exceed
+ * 10 MB, and the content must not be empty (zero bytes, or only whitespace
+ * and a BOM).
+ */
+export function validateFile(name: string, size: number, text: string): FileValidationError | null {
+  if (!/\.csv$/i.test(name.trim())) return 'not-csv';
+  if (size > MAX_FILE_BYTES) return 'too-large';
+  const content = text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
+  if (size === 0 || content.trim() === '') return 'empty';
+  return null;
+}
