@@ -42,18 +42,18 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - [x] 6.2 Property test P11
   - _Requirements: 5, 6_
 
-- [ ] 7. UI shell and theme [Day 5]
-  - [ ] 7.1 App layout, gothic theme, PrivacyBadge
-  - [ ] 7.2 UploadZone + sample data button + error states (not CSV, empty, over 10 MB) + `SkippedRowsNotice` ("N rows skipped")
-  - [ ] 7.3 ColumnMapper with "Flip sign" toggle
-  - [ ] Manual checklist (all must pass):
-    - Whole flow works with keyboard only; focus ring visible on every control
-    - Layout works at 360px width with no horizontal scroll
-    - Text contrast meets WCAG AA
-    - PrivacyBadge is visible on upload, mapper and dashboard screens
-    - Non-CSV, empty and 11 MB files each show an error and the app stays usable
-    - "N rows skipped" appears for a file with a bad row and not otherwise
-    - Mapper "Flip sign" changes which rows are debits
+- [x] 7. UI shell and theme [Day 5]
+  - [x] 7.1 App layout, gothic theme, PrivacyBadge
+  - [x] 7.2 UploadZone + sample data button + error states (not CSV, empty, over 10 MB) + `SkippedRowsNotice` ("N rows skipped")
+  - [x] 7.3 ColumnMapper with "Flip sign" toggle
+  - [x] Manual checklist (all must pass):
+    - [x] Whole flow works with keyboard only; focus ring visible on every control
+    - [x] Layout works at 360px width with no horizontal scroll
+    - [x] Text contrast meets WCAG AA
+    - [x] PrivacyBadge is visible on upload, mapper and dashboard screens
+    - [x] Non-CSV, empty and 11 MB files each show an error and the app stays usable
+    - [x] "N rows skipped" appears for a file with a bad row and not otherwise
+    - [x] Mapper "Flip sign" changes which rows are debits
   - _Requirements: 1, 2, 9, 10_
 
 - [ ] 8. Dashboard [Day 6]
