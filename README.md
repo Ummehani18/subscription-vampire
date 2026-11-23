@@ -6,7 +6,7 @@ Upload a bank statement CSV, see every subscription "vampire" feeding on you in 
 
 Built for Kiroween 2026 with Kiro (specs, steering, property-based testing).
 
-**Live demo:** _not deployed yet (add the Vercel or Netlify URL here after deploying)._
+**Live demo:** https://subscription-vampire.vercel.app/
 
 ## What it does
 - **Upload** a bank statement CSV (up to 10 MB), or click **Try with sample data** for a bundled synthetic statement.

@@ -87,13 +87,13 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - _Requirements: 7, 8, 9, 10_
 
 - [ ] 10. Polish and ship [Day 8]
-  - [ ] 10.1 Final accessibility audit (verification only; fixes belong in tasks 7-9): keyboard, contrast, 360px, reduced motion
+  - [x] 10.1 Final accessibility audit (verification only; fixes belong in tasks 7-9): keyboard, contrast, 360px, reduced motion
   - [ ] 10.2 README, final deploy, license visible in repo About
   - [ ] Manual checklist (all must pass):
-    - [ ] Keyboard only: upload, sample data, mapper, every card button, both collapsed sections, "How to cancel", Export and Clear all data all work; focus ring always visible
-    - [ ] Contrast: on-screen text meets WCAG AA on every screen
-    - [ ] 360px: no horizontal scroll on upload, mapper and dashboard, including open cancel guides
-    - [ ] Reduced motion: no Blood Meter fill or candle flicker animation
+    - [x] Keyboard only: upload, sample data, mapper, every card button, both collapsed sections, "How to cancel", Export and Clear all data all work; focus ring always visible
+    - [x] Contrast: on-screen text meets WCAG AA on every screen
+    - [x] 360px: no horizontal scroll on upload, mapper and dashboard, including open cancel guides
+    - [x] Reduced motion: no Blood Meter fill or candle flicker animation
     - [ ] README is accurate and includes the live URL
     - [ ] Deployed site loads, "Try with sample data" works, and the network tab shows no third-party requests
     - [ ] Repo is public, includes `.kiro/`, and GitHub shows the MIT license in the About sidebar
