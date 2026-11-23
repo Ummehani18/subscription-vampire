@@ -30,11 +30,11 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
   - [x] 4.3 Property tests P4, P5
   - _Requirements: 3_
 
-- [ ] 5. Recurring detection [Day 3-4]
-  - [ ] 5.1 Implement `detectRecurring.ts` (windows, 70% gap rule, every-28-days vs monthly rule, amount runs, tiers, price change as last run vs previous run (hike/drop), `currentAmount`, possibly cancelled via `CANCELLED_AFTER_DAYS`, next date via `NEXT_DATE_RULE`, tie sort)
-  - [ ] 5.2 Property tests P6-P10, including P7b
-  - [ ] 5.3 Example tests for amount runs and price change (Spotify-style 119 -> 139 gives `currentAmount` 139 and annualDrain 139 x 12), same-day collapse, `CANCELLED_AFTER_DAYS` boundary, month-end clamping
-  - [ ] 5.4 Verify sample CSV result matches `data/README.md` (seven Subscriptions, rent under Other recurring, nothing possibly cancelled)
+- [x] 5. Recurring detection [Day 3-4]
+  - [x] 5.1 Implement `detectRecurring.ts` (windows, 70% gap rule, every-28-days vs monthly rule, amount runs, tiers, price change as last run vs previous run (hike/drop), `currentAmount`, possibly cancelled via `CANCELLED_AFTER_DAYS`, next date via `NEXT_DATE_RULE`, tie sort)
+  - [x] 5.2 Property tests P6-P10, including P7b
+  - [x] 5.3 Example tests for amount runs and price change (Spotify-style 119 -> 139 gives `currentAmount` 139 and annualDrain 139 x 12), same-day collapse, `CANCELLED_AFTER_DAYS` boundary, month-end clamping
+  - [x] 5.4 Verify sample CSV result matches `data/README.md` (seven Subscriptions, rent under Other recurring, nothing possibly cancelled)
   - _Requirements: 4_
 
 - [ ] 6. Savings math [Day 4]
