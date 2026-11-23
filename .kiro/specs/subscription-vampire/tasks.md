@@ -8,12 +8,12 @@ Work top to bottom. Mark each logic task done only when its tests pass. Mark eac
     - Checklist: no request to fonts.googleapis.com or other third-party hosts in the browser network tab; CSP header or meta tag present
   - _Requirements: 9, 10_
 
-- [ ] 2. Core types, amounts, dates [Day 2]
+- [x] 2. Core types, amounts, dates [Day 2]
   - [x] 2.1 Create `types.ts` (Vampire with `tier`, `possiblyCancelled`, price-change `direction`; Decision with `dismiss`)
   - [x] 2.2 Implement `amounts.ts` (`parseAmount`, `parseSignedAmount`, `formatINR`) with example tests
   - [x] 2.3 Write property tests P1 (amount round trip)
-  - [ ] 2.4 Implement `dates.ts` (two-digit year pivot 00-79 = 20xx, `addMonths` with clamping) with example tests
-  - [ ] 2.5 Write property tests P2, P3 (date round trip and rejection)
+  - [x] 2.4 Implement `dates.ts` (two-digit year pivot 00-79 = 20xx, `addMonths` with clamping) with example tests
+  - [x] 2.5 Write property tests P2, P3 (date round trip and rejection)
   - _Requirements: 2_
 
 - [ ] 3. Statement parsing [Day 2]
