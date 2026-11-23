@@ -3,7 +3,7 @@
 Work top to bottom. Mark each logic task done only when its tests pass. Mark each UI task (7-9) done only when every item of its manual checklist is ticked. Day plan in brackets.
 
 - [ ] 1. Project scaffold [Day 1-2]
-  - [ ] 1.1 Vite + React + TS (strict) + Tailwind v4 + Vitest + fast-check configured; `npm run test` and `npm run build` pass
+  - [x] 1.1 Vite + React + TS (strict) + Tailwind v4 + Vitest + fast-check configured; `npm run test` and `npm run build` pass
   - [ ] 1.2 Folder structure matches `structure.md`; theme tokens in place; fonts self-hosted via `@fontsource/cinzel` and `@fontsource-variable/inter`; CSP with `connect-src 'self'` set; deploy a "hello vampire" page to Vercel/Netlify
     - Checklist: no request to fonts.googleapis.com or other third-party hosts in the browser network tab; CSP header or meta tag present
   - _Requirements: 9, 10_
