@@ -75,7 +75,7 @@ Acceptance criteria:
 1. The system SHALL display the total monthly-equivalent and yearly drain across all Counted Vampires that are not staked, not dismissed, and not possibly cancelled. Monthly-equivalent is the yearly drain divided by 12, rounded half up.
 2. The system SHALL list Vampires sorted by annualised drain, highest first. Ties SHALL be sorted by merchant name, ascending. Each card SHALL show the Vampire's current amount.
 3. WHEN a Vampire has a price change THEN its card SHALL show a visible "price hike" badge for a rise or a "price drop" badge for a fall.
-4. WHEN two or more Counted Vampires fall in the same category (music, ott-video, or cloud) THEN the system SHOULD flag them as possible duplicates. YouTube Premium and Spotify are both in the music category.
+4. WHEN two or more Counted Vampires that are not dismissed and not possibly cancelled fall in the same category (music, ott-video, or cloud) THEN the system SHOULD flag each of them as a possible duplicate. Staked Vampires still count and keep the flag. YouTube Premium and Spotify are both in the music category.
 5. WHEN no Vampires of either tier are detected THEN the system SHALL show a friendly "No vampires found" state.
 6. The system SHALL show Subscriptions first and Other recurring payments in a section that is collapsed by default. Other recurring payments SHALL be excluded from the Blood Meter until the user clicks "Count it" on them. Uncounted cards SHALL offer only "Count it" and "Dismiss"; Keep and Stake appear once counted.
 7. WHEN a Vampire is possibly cancelled THEN its card SHALL show a "Possibly cancelled" badge.

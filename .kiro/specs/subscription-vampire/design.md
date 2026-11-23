@@ -132,7 +132,7 @@ Properties the implementation must satisfy are listed below.
   - dismissed vampires count toward neither.
   - `monthlyDrain` = round half up of `yearlyDrain / 12`.
   - `toReview` = number of eligible vampires with decision `undecided`.
-- `flagDuplicates(vampires, decisions, counted)` groups eligible, non-dismissed vampires by category (music, ott-video, cloud) and returns categories with 2+ vampires. Staked vampires still count.
+- `flagDuplicates(vampires, decisions, counted)` groups eligible, non-dismissed vampires by category (music, ott-video, cloud) and returns categories with 2+ vampires. Staked vampires still count. The UI shows the duplicate badge on every eligible, non-dismissed vampire in a returned category.
 
 ### `cancelGuides.ts`
 `Record<string, { steps: string[]; url?: string; lastVerified: string }>` keyed by canonical merchant, plus `genericGuide`. Steps are short, neutral, and must carry a `lastVerified` date. Only include steps that were verified from the provider's own help page.
